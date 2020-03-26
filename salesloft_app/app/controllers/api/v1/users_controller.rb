@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
         render json: email_characters
     end
 
-    def count_letters(user_email_characters)
+    def count_email_characters(user_email_characters)
         counted = {}
 
         chars = user_email_characters.split("")
