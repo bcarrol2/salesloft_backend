@@ -5,24 +5,31 @@ class Api::V1::UsersController < ApplicationController
 
     def user_email_characters
         email_characters = @user.email.split('@')[0]
-        render json: email_characters
+        counted_characters = count_email_characters(email_characters)
+
+        email_data = {
+            email_letters: email_characters,
+            character_amount: counted_characters
+        }
+
+        render json: email_data
     end
 
-    def count_email_characters(user_email_characters)
+    def count_email_characters(email_string)
         counted = {}
 
-        chars = user_email_characters.split("")
+        chars = email_string.split("")
         for char in chars
             if char == " "
             next
-            elsif counted.has_key? char
+            elsif counted.key? char
             counted[char] = counted[char] + 1   
             else
             counted[char] = 1
             end
         end
 
-        render json: counted
+        counted
     end
 
 end
