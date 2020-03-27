@@ -4,14 +4,14 @@ one:
   first_name: MyString
   last_name: MyString
   email: MyString
-  email_confirmation: MyString
+  email_confirmed: false
   password: MyString
-  password_confirmation: MyString
+  password_confirmed: false
 
 two:
   first_name: MyString
   last_name: MyString
   email: MyString
-  email_confirmation: MyString
+  email_confirmed: false
   password: MyString
-  password_confirmation: MyString
+  password_confirmed: false

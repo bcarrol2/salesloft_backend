@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
     def index
         @user = User.first
+        render json: @user
     end
 
     def user_email_characters
