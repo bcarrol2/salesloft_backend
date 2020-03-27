@@ -1,7 +1,8 @@
 class Api::V1::UsersController < ApplicationController
     def index
         @users = User.all
-        render json: @users
+        # render json: @users
+        render component: 'Users', props: { users: @users }
     end
 
     def user_email_characters
