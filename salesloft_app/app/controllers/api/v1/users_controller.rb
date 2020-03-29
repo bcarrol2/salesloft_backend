@@ -1,8 +1,15 @@
 class Api::V1::UsersController < ApplicationController
+    before_action :require_login
+
     def index
         @users = User.all
         # render json: @users
         render component: 'Users', props: { users: @users }
+    end
+
+    def show
+        debugger
+        @user = User.find(params[:id])
     end
 
     def user_email_characters
@@ -46,6 +53,20 @@ class Api::V1::UsersController < ApplicationController
             end
         }
         close_enough
+    end
+
+    def scroll
+        myparams = { page: params[:page], per_page: params[:per_page] }
+        users = User.where("description ILIKE #{params[:term]}").paginate(myparams)
+        
+        response = {users: users, total: users.all.size}
+        return render json: response
+    end
+
+    private
+
+    def require_login
+        render component: 'Login'
     end
 
 end
