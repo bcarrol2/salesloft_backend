@@ -1,8 +1,8 @@
 import React from "react"
 
 class Login extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       email: '',
@@ -10,10 +10,46 @@ class Login extends React.Component {
     }
 
     this.inputRef = React.createRef()
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
     this.inputRef.current.focus()
+  }
+
+  handleChange(e){
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  handleSubmit(){
+    const url = "http://localhost:3000/"
+    const { email, password } = this.state;
+    const body = {
+      email,
+      password
+    }
+
+    if (email.length === 0 || password.length === 0)
+    return;
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+    .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then(() => this.props.history.push("/users"))
+      .catch(error => console.log(error.message));
   }
 
   render () {
@@ -34,20 +70,20 @@ class Login extends React.Component {
         <div className="split right">
             <div className="loginForm">
                 <div className="bottomLoginForm">
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <h2 style={{ color: 'grey' }}>Account</h2>
                         <input className="inputBox" 
                         type="text" 
                         name="email" 
                         ref={this.inputRef} 
-                        onChange={event => this.setState({ email: event.target.value })} 
+                        onChange={this.handleChange} 
                         value={this.state.email} 
                         placeholder="Username">
                         </input>
                         <input className="inputBox" 
-                        type="text" 
+                        type="password" 
                         name="password" 
-                        onChange={event => this.setState({ password: event.target.value })} 
+                        onChange={this.handleChange} 
                         value={this.state.password} 
                         placeholder="Password">
                         </input>

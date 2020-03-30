@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :require_login
+    # before_action :check_login
 
     def index
         @users = User.all
@@ -8,15 +8,17 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        # @user = User.find(params[:id])
     end
 
     def create
+        @user = User.new(user_params)
+        @user.save!
     end
     
     def login_user
         user = User.find_by(params[:email])
-        # debugger
+        debugger
     end
 
     def user_email_characters
@@ -72,8 +74,17 @@ class UsersController < ApplicationController
 
     private
 
-    def require_login
-        render component: 'Login'
+    def user_params
+        require(:users).permit(:first_name, :last_name, :email, :password)
+    end
+
+    def check_login
+        if current_user
+            index
+        else
+            flash.now[:alert] = "You need to be logged in"
+            render component: 'Login'
+        end
     end
 
 end
