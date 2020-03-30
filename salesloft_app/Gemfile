@@ -58,3 +58,5 @@ gem "react-rails", "~> 2.6"
 gem "faker", "~> 2.11"
 
 gem "will_paginate", "~> 3.3"
+
+gem "devise", "~> 4.7"

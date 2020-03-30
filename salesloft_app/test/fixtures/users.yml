@@ -7,6 +7,8 @@ one:
   email_confirmed: false
   password: MyString
   password_confirmed: false
+  phone_number: MyString
+  money_spent: 1
 
 two:
   first_name: MyString
@@ -15,3 +17,5 @@ two:
   email_confirmed: false
   password: MyString
   password_confirmed: false
+  phone_number: MyString
+  money_spent: 1

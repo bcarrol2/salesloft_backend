@@ -20,25 +20,22 @@ class Login extends React.Component {
     return (
       <div>
         <div className="split left">
-          <div id="login-letters"><h1 id="moving-login-letter">S</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">A</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">L</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">E</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">S</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">S</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">A</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">L</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">E</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">S</h1></div>
           <br />
-          <div id="login-letters"><h1 id="moving-login-letter">L</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">O</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">F</h1></div>
-          <div id="login-letters"><h1 id="moving-login-letter">T</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">L</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">O</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">F</h1></div>
+          <div id="login-letters-box"><h1 id="moving-login-letter">T</h1></div>
         </div>
         <div className="split right">
             <div className="loginForm">
-                <div>
-                    <h1 style={{ color: 'grey' }}>Account</h1>
-                </div>
                 <div className="bottomLoginForm">
                     <form>
-                        <h2 style={{ color: 'grey' }}>Login</h2>
+                        <h2 style={{ color: 'grey' }}>Account</h2>
                         <input className="inputBox" 
                         type="text" 
                         name="email" 
@@ -60,7 +57,6 @@ class Login extends React.Component {
                     </form>
                 </div>
                 <p>Don't have an account? <a href="/signup">Sign up</a></p>
-                <p><a href="/api/v1/users">Home</a></p>
             </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class UsersController < ApplicationController
     before_action :require_login
 
     def index
@@ -8,8 +8,15 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def show
-        debugger
         @user = User.find(params[:id])
+    end
+
+    def create
+    end
+    
+    def login_user
+        user = User.find_by(params[:email])
+        # debugger
     end
 
     def user_email_characters
