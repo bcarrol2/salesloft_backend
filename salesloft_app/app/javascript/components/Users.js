@@ -1,43 +1,46 @@
 import React from "react";
-import styled from "styled-components";
-
-// const Styled = styled.div`
-//   background-color: blue;
-//   background-size: contain;
-//   width: 100 % ;
-//   height: 100 % ;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   position: absolute;
-// `
+import List from './List';
+import axios from 'axios';
 
 class Users extends React.Component {
+  constructor(props){
+    super(props)
+
+  }
+
+  logoutUser = () => {
+    const url = "http://localhost:3000/users/sign_out.json";
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+      axios.delete(url, {
+        headers: {
+          Authorization: csrfToken
+        },
+        data: {
+          source: "user"
+        }
+      })
+      .then(() => window.location.reload())
+      .catch(error => console.log(error.message));
+    }
+
   render() {
+    let allUsers = this.props.users;
     return (
-      // <Styled>
       <div>
         <div className="profile-container">
-          <h1>Hey Kyle</h1>
+          <h2 style={{textDecoration: 'underline'}}>Hey {this.props.current_user_email}</h2>
+          <div><h3>{this.props.email_comparison.length} Similar Emails</h3><p style={{color: 'black'}}>{this.props.email_comparison.join(", ")}</p></div>
+          <div>
+            <h3>Email Characters</h3>
+            {this.props.email_data.map(letter_array => (
+              <div id="email-characters"><p>{letter_array}</p></div>
+            ))}
+          </div>
+          <button className="logoutButton" onClick={this.logoutUser}>Logout</button>
         </div>
-        <ol className="users-list-container">
-          {this.props.users.map(user => (
-            <li id="single-user-listed" key={user.id}>
-              Name: {user.first_name} {user.last_name}
-              <br />
-              Email: {user.email}
-              <br />
-              Phone Number: {user.phone_number}
-              <details>
-                <summary>Money Spent with the company</summary>
-                <p>${user.money_spent}</p>
-              </details>
-            </li>
-          ))}
-        </ol>
+        <List users={allUsers} />
       </div>
-      // </Styled>
     );
   }
 }

@@ -102,16 +102,35 @@
     height: 300px;
     background-color: #0074d9;
     margin: 20px;
-}
-
-.users-list-container {
-    background-color: skyblue;
-    width: 70%;
-    border: 2px solid navy;
+    padding: 20px;
     border-radius: 5px;
-    margin: 0 auto;
+    color: white;
 }
 
 #single-user-listed {
+    background-color: #96c9f5;
+}
+
+#single-user-listed:nth-child(odd) {
+    background-color: rgb(156, 186, 216);
+}
+
+#email-characters {
     border: 1px solid white;
+    margin: 5px;
+    width: 50px;
+    float: left;
+    text-align: center;
+    color: black;
+}
+
+.logoutButton {
+    float: right;
+    clear: both;
+    height: 30px;
+    background-color: white;
+    margin: 10px;
+    color: black;
+    font-size: 15px;
+
 }

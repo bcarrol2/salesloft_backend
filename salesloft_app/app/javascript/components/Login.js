@@ -1,5 +1,7 @@
 import React from "react"
 
+// unused component view rendered from rails devise
+
 class Login extends React.Component {
   constructor(props){
     super(props)
@@ -43,12 +45,12 @@ class Login extends React.Component {
       body: JSON.stringify(body)
     })
     .then(response => {
-        if (response.ok) {
           return response.json();
-        }
-        throw new Error("Something went wrong");
       })
-      .then(() => this.props.history.push("/users"))
+      .then(payload => {
+        localStorage.setItem("token", payload.token)
+      })
+      .then(window.location.href = "/users")
       .catch(error => console.log(error.message));
   }
 
@@ -78,7 +80,7 @@ class Login extends React.Component {
                         ref={this.inputRef} 
                         onChange={this.handleChange} 
                         value={this.state.email} 
-                        placeholder="Username">
+                        placeholder="Email">
                         </input>
                         <input className="inputBox" 
                         type="password" 
@@ -99,5 +101,4 @@ class Login extends React.Component {
     );
   }
 }
-
-export default Login
+export default Login;
